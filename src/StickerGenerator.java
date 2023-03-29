@@ -24,7 +24,7 @@ public class StickerGenerator {
         graphics.setColor(Color.YELLOW);
         graphics.setFont(font);
 
-        graphics.drawString("RECOMENDO!", 100, newHeight - 100);
+        graphics.drawString("IMAGEM LEGAL!", 100, newHeight - 100);
 
         ImageIO.write(newImage, "png", new File(fileName));
     }
