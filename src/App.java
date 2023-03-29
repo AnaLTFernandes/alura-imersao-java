@@ -1,4 +1,6 @@
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -19,8 +21,19 @@ public class App {
         JsonParser json = new JsonParser();
         List<Map<String, String>> moviesList = json.parse(body);
 
-        for (Map<String, String> movie : moviesList) {
-            System.out.println("Nome do filme: \"" + movie.get("title") + "\" - Rating: " + movie.get("imDbRating"));
+        StickerGenerator stickerGenerator = new StickerGenerator();
+
+        for (int i = 0; i < 3; i++) {
+            Map<String, String> movie = moviesList.get(i);
+            String urlImage = movie.get("image").replaceAll("(@+)(.*).jpg$", "$1.jpg");
+            String title = movie.get("title");
+
+            InputStream inputStream = new URL(urlImage).openStream();
+            String nomeArquivo = "images/" + title + ".png";
+
+            stickerGenerator.create(inputStream, nomeArquivo);
+
+            System.out.println(title);
             System.out.println();
         }
     }
