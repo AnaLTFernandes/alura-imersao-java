@@ -20,7 +20,7 @@ public class App {
             String title = item.getTitle();
 
             InputStream inputStream = new URL(item.getUrlImage()).openStream();
-            String nomeArquivo = "images/" + title + ".png";
+            String nomeArquivo = "stickers-generator/images/" + title + ".png";
 
             stickerGenerator.create(inputStream, nomeArquivo);
 
